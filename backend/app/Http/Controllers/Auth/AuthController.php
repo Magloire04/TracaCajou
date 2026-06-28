@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\Agent;
+use App\Services\SecurityLogger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function __construct(private readonly SecurityLogger $logger) {}
+
     public function login(LoginRequest $request): JsonResponse
     {
         $agent = Agent::where('email', $request->email)->first();
@@ -28,6 +31,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
         Auth::guard('web')->login($agent);
+        $this->logger->logLogin($agent);
 
         return response()->json([
             'data' => [
