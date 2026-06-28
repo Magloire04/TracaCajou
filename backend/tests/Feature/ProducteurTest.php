@@ -18,10 +18,11 @@ class ProducteurTest extends TestCase
 
         $response = $this->actingAs($agent, 'sanctum')
             ->postJson("/api/v1/cooperatives/{$agent->cooperative_id}/producteurs", [
-                'prenom'   => 'Kofi',
-                'nom'      => 'Adjovi',
-                'sexe'     => 'M',
-                'localite' => 'Kétou-Centre',
+                'prenom'       => 'Kofi',
+                'nom'          => 'Adjovi',
+                'sexe'         => 'M',
+                'localite'     => 'Kétou-Centre',
+                'consentement' => true,
             ]);
 
         $response->assertStatus(201)
@@ -38,7 +39,19 @@ class ProducteurTest extends TestCase
 
         $this->actingAs($agent, 'sanctum')
             ->postJson("/api/v1/cooperatives/{$agent->cooperative_id}/producteurs", [
-                'nom' => 'Adjovi',
+                'nom'          => 'Adjovi',
+                'consentement' => true,
+            ])
+            ->assertStatus(422);
+    }
+
+    public function test_retourne_422_si_consentement_absent(): void
+    {
+        $agent = Agent::factory()->create();
+
+        $this->actingAs($agent, 'sanctum')
+            ->postJson("/api/v1/cooperatives/{$agent->cooperative_id}/producteurs", [
+                'prenom' => 'Kofi', 'nom' => 'Adjovi', 'consentement' => false,
             ])
             ->assertStatus(422);
     }

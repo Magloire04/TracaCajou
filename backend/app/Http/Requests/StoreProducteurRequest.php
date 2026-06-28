@@ -14,10 +14,11 @@ class StoreProducteurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'prenom'   => ['required', 'string', 'max:100'],
-            'nom'      => ['required', 'string', 'max:100'],
-            'sexe'     => ['nullable', 'in:M,F'],
-            'localite' => ['nullable', 'string', 'max:200'],
+            'prenom'       => ['required', 'string', 'max:100'],
+            'nom'          => ['required', 'string', 'max:100'],
+            'sexe'         => ['nullable', 'in:M,F'],
+            'localite'     => ['nullable', 'string', 'max:200'],
+            'consentement' => ['required', 'boolean', 'accepted'],
         ];
     }
 }

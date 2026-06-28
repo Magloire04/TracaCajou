@@ -134,6 +134,17 @@ class LotTest extends TestCase
             ->assertJsonPath('error.code', 'PRODUCTEUR_WRONG_COOPERATIVE');
     }
 
+    public function test_show_refuse_acces_lot_autre_cooperative(): void
+    {
+        $agentA = Agent::factory()->create();
+        $agentB = Agent::factory()->create(); // different cooperative
+        $lot    = Lot::factory()->create(['cooperative_id' => $agentB->cooperative_id]);
+
+        $this->actingAs($agentA, 'sanctum')
+            ->getJson("/api/v1/lots/{$lot->id}")
+            ->assertStatus(404);
+    }
+
     public function test_liste_les_lots_pagines_de_la_cooperative(): void
     {
         $agent = Agent::factory()->create();

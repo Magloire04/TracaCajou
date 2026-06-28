@@ -8,7 +8,7 @@ use App\Http\Middleware\VerifyCooperativeAccess;
 use Illuminate\Support\Facades\Route;
 
 // Routes publiques
-Route::post('/auth/login', [AuthController::class, 'login']);
+Route::post('/auth/login', [AuthController::class, 'login'])->middleware('throttle:5,1');
 
 // Public-key doit être avant {uuid}/verify pour éviter que Laravel ne traite "public-key" comme un {uuid}
 Route::get('/certificats/public-key', [CertificatController::class, 'publicKey']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Certificat;
 use App\Services\SignatureService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
@@ -50,11 +51,16 @@ class CertificatController extends Controller
         ]);
     }
 
-    public function download(string $uuid): Response
+    public function download(Request $request, string $uuid): Response
     {
-        $certificat = Certificat::where('public_uuid', $uuid)->firstOrFail();
-        $path       = "certificats/{$certificat->public_uuid}.pdf";
+        $certificat = Certificat::where('public_uuid', $uuid)->with('lot')->firstOrFail();
 
+        // Anti-IDOR: only agents from the same cooperative can download
+        if ($certificat->lot->cooperative_id !== $request->user()->cooperative_id) {
+            abort(403, 'Accès refusé.');
+        }
+
+        $path = "certificats/{$certificat->public_uuid}.pdf";
         abort_unless(Storage::exists($path), 404);
 
         return response(Storage::get($path), 200, [
