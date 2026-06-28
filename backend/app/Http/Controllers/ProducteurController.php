@@ -62,7 +62,7 @@ class ProducteurController extends Controller
         ], 201);
     }
 
-    public function destroy(Request $request, string $cooperativeId, string $producteurId): JsonResponse
+    public function destroy(string $cooperativeId, string $producteurId): JsonResponse
     {
         $producteur = Producteur::where('id', $producteurId)
             ->where('cooperative_id', $cooperativeId)
