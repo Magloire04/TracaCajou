@@ -48,7 +48,7 @@ class ProducteurController extends Controller
             'sexe'            => $request->sexe,
             'localite'        => $request->localite,
             'cooperative_id'  => $cooperativeId,
-            'consentement_le' => now(),
+            'consentement_le' => $request->boolean('consentement') ? now() : null,
         ]);
 
         return response()->json([

@@ -36,9 +36,11 @@ class LotController extends Controller
         ]);
     }
 
-    public function show(string $id): JsonResponse
+    public function show(Request $request, string $id): JsonResponse
     {
-        $lot = Lot::with(['certificat', 'cooperative', 'producteur'])->findOrFail($id);
+        $lot = Lot::with(['certificat', 'cooperative', 'producteur'])
+            ->where('cooperative_id', $request->user()->cooperative_id)
+            ->findOrFail($id);
 
         return response()->json(['data' => $this->formatLot($lot, detail: true)]);
     }

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\CertificatStatut;
+use App\Models\Agent;
 use App\Models\Certificat;
 use App\Models\Lot;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -164,5 +165,20 @@ class CertificatTest extends TestCase
 
         $this->getJson("/api/v1/certificats/{$certificat->public_uuid}/pdf")
             ->assertStatus(401);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // download — anti-IDOR : un agent ne peut pas télécharger le PDF d'une
+    //            autre coopérative
+    // ─────────────────────────────────────────────────────────────────────────
+
+    public function test_download_refuse_acces_certificat_autre_cooperative(): void
+    {
+        $agentA     = Agent::factory()->create();
+        $certificat = Certificat::factory()->create(); // belongs to its own cooperative
+
+        $this->actingAs($agentA, 'sanctum')
+            ->getJson("/api/v1/certificats/{$certificat->public_uuid}/pdf")
+            ->assertStatus(403);
     }
 }
