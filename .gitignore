@@ -3,6 +3,8 @@
 *.pem
 *.key
 storage/keys/tracacajou_private.pem
+# Exception : la clé publique P-384 n'est pas secrète et doit être versionnée
+!backend/storage/keys/p384-public.pem
 
 # ─── Laravel ─────────────────────────────────────────────────────────────────
 /backend/vendor/
