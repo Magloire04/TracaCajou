@@ -45,7 +45,7 @@ class LotController extends Controller
 
     public function store(StoreLotRequest $request, string $cooperativeId): JsonResponse
     {
-        $producteur = Producteur::find($request->producteur_id);
+        $producteur = Producteur::findOrFail($request->producteur_id);
 
         if ($producteur->cooperative_id !== $cooperativeId) {
             return response()->json([
