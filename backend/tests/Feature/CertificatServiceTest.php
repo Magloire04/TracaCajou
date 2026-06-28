@@ -110,6 +110,9 @@ class CertificatServiceTest extends TestCase
         $this->assertSame(26, strlen($certificat->public_uuid));
 
         // Vérifier la signature ECDSA P-384
+        // Force DB round-trip to catch timestamp truncation regressions
+        $certificat = $certificat->fresh();
+        $lot->load('cooperative');
         $signatureService = app(SignatureService::class);
         $payload          = $signatureService->buildPayload($lot, $certificat->emis_le->toIso8601String());
         $this->assertTrue($signatureService->verify($payload, $certificat->signature));
