@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ProducteurController;
 use App\Http\Middleware\VerifyCooperativeAccess;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware(['auth:sanctum', VerifyCooperativeAccess::class])
     ->prefix('cooperatives/{cooperativeId}')
     ->group(function () {
-        // Stub pour les tests du middleware — remplacé par les vrais contrôleurs en Tasks 8/9
-        Route::get('/producteurs', fn () => response()->json(['data' => []]));
+        Route::get('/producteurs', [ProducteurController::class, 'index']);
+        Route::post('/producteurs', [ProducteurController::class, 'store']);
+        // destroy sera ajouté en Task 12
     });
