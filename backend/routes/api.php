@@ -17,7 +17,7 @@ Route::get('/certificats/{uuid}/verify', [CertificatController::class, 'verify']
 // Routes authentifiées (Sanctum SPA)
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
-    // Détail d'un lot (pas de vérification coopérative car l'agent peut consulter par ID)
+    // Détail d'un lot (scopé à la cooperative de l'agent dans LotController::show)
     Route::get('/lots/{id}', [LotController::class, 'show']);
     // Téléchargement du PDF du certificat (auth requise)
     Route::get('/certificats/{uuid}/pdf', [CertificatController::class, 'download']);
