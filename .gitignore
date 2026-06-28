@@ -1,0 +1,39 @@
+# ─── Secrets & clés (JAMAIS dans le dépôt) ───────────────────────────────────
+.env
+*.pem
+*.key
+storage/keys/tracacajou_private.pem
+
+# ─── Laravel ─────────────────────────────────────────────────────────────────
+/backend/vendor/
+/backend/node_modules/
+/backend/.env
+/backend/storage/logs/
+/backend/storage/app/
+/backend/storage/framework/cache/
+/backend/storage/framework/sessions/
+/backend/storage/framework/views/
+/backend/bootstrap/cache/
+/backend/.phpunit.result.cache
+/backend/.phpunit.cache/
+/backend/coverage/
+
+# ─── Nuxt / Vue ──────────────────────────────────────────────────────────────
+/frontend/node_modules/
+/frontend/.nuxt/
+/frontend/.output/
+/frontend/dist/
+/frontend/.env
+/frontend/.env.local
+
+# ─── OS & éditeurs ───────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/settings.json
+
+# ─── Logs & temporaires ──────────────────────────────────────────────────────
+*.log
+npm-debug.log*
