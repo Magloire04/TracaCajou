@@ -29,7 +29,7 @@ Route::middleware(['auth:sanctum', VerifyCooperativeAccess::class])
     ->group(function () {
         Route::get('/producteurs', [ProducteurController::class, 'index']);
         Route::post('/producteurs', [ProducteurController::class, 'store']);
-        // destroy sera ajouté en Task 12
+        Route::delete('/producteurs/{producteurId}', [ProducteurController::class, 'destroy']);
         Route::get('/lots', [LotController::class, 'index']);
         Route::post('/lots', [LotController::class, 'store']);
     });

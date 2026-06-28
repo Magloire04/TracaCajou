@@ -68,4 +68,34 @@ class ProducteurTest extends TestCase
         $response->assertJsonMissingPath('data.0.localite')
             ->assertJsonMissingPath('data.0.consentement_le');
     }
+
+    public function test_anonymise_un_producteur_a_la_suppression_apdp(): void
+    {
+        $agent      = Agent::factory()->create();
+        $producteur = Producteur::factory()->create([
+            'cooperative_id' => $agent->cooperative_id,
+            'consentement_le' => now(),
+        ]);
+
+        $this->actingAs($agent, 'sanctum')
+            ->deleteJson("/api/v1/cooperatives/{$agent->cooperative_id}/producteurs/{$producteur->id}")
+            ->assertStatus(204);
+
+        $producteur->refresh();
+        $this->assertSame('[supprimé]', $producteur->prenom);
+        $this->assertSame('[supprimé]', $producteur->nom);
+        $this->assertNull($producteur->sexe);
+        $this->assertNull($producteur->localite);
+        $this->assertNotNull($producteur->consentement_le); // conservé pour traçabilité légale
+    }
+
+    public function test_refuse_anonymisation_producteur_autre_cooperative(): void
+    {
+        $agent           = Agent::factory()->create();
+        $autreProducteur = Producteur::factory()->create();
+
+        $this->actingAs($agent, 'sanctum')
+            ->deleteJson("/api/v1/cooperatives/{$agent->cooperative_id}/producteurs/{$autreProducteur->id}")
+            ->assertStatus(404); // anti-IDOR : n'existe pas dans cette coopérative
+    }
 }
