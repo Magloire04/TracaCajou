@@ -27,7 +27,7 @@ class AuthController extends Controller
         }
 
         $request->session()->regenerate();
-        Auth::login($agent);
+        Auth::guard('web')->login($agent);
 
         return response()->json([
             'data' => [
