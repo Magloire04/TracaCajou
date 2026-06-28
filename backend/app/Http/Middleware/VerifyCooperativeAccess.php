@@ -12,6 +12,7 @@ class VerifyCooperativeAccess
         $cooperativeId = $request->route('cooperativeId');
 
         if ($request->user()->cooperative_id !== $cooperativeId) {
+            app(\App\Services\SecurityLogger::class)->log403($request, 'COOPERATIVE_ACCESS_DENIED');
             return response()->json([
                 'error' => [
                     'code'    => 'COOPERATIVE_ACCESS_DENIED',
