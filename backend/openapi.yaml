@@ -1,0 +1,227 @@
+openapi: "3.1.0"
+info:
+  title: TraçaCajou API
+  version: "1.0.0"
+  description: API de certification d'origine des lots de cajou — Bénin
+
+servers:
+  - url: /api/v1
+
+paths:
+  /auth/login:
+    post:
+      summary: Connexion agent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:    { type: string, format: email }
+                password: { type: string }
+      responses:
+        "200":
+          description: Connexion réussie
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AgentResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "422": { $ref: "#/components/responses/ValidationError" }
+
+  /auth/logout:
+    post:
+      summary: Déconnexion
+      security: [{ cookieAuth: [] }]
+      responses:
+        "204": { description: Déconnecté }
+
+  /cooperatives/{cooperativeId}/producteurs:
+    get:
+      summary: Liste paginée des producteurs
+      security: [{ cookieAuth: [] }]
+      parameters:
+        - { name: cooperativeId, in: path, required: true, schema: { type: string } }
+        - { name: page,  in: query, schema: { type: integer, default: 1 } }
+        - { name: limit, in: query, schema: { type: integer, default: 20, maximum: 100 } }
+      responses:
+        "200":
+          description: Liste de producteurs
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ProducteurList" }
+    post:
+      summary: Enrôler un producteur
+      security: [{ cookieAuth: [] }]
+      parameters:
+        - { name: cooperativeId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [prenom, nom]
+              properties:
+                prenom:   { type: string }
+                nom:      { type: string }
+                sexe:     { type: string, enum: [M, F] }
+                localite: { type: string }
+      responses:
+        "201": { description: Producteur créé }
+        "422": { $ref: "#/components/responses/ValidationError" }
+
+  /cooperatives/{cooperativeId}/producteurs/{producteurId}:
+    delete:
+      summary: Anonymiser un producteur (APDP)
+      security: [{ cookieAuth: [] }]
+      parameters:
+        - { name: cooperativeId, in: path, required: true, schema: { type: string } }
+        - { name: producteurId, in: path, required: true, schema: { type: string } }
+      responses:
+        "204": { description: Anonymisé }
+
+  /cooperatives/{cooperativeId}/lots:
+    get:
+      summary: Historique des lots
+      security: [{ cookieAuth: [] }]
+      parameters:
+        - { name: cooperativeId, in: path, required: true, schema: { type: string } }
+        - { name: page,  in: query, schema: { type: integer, default: 1 } }
+        - { name: limit, in: query, schema: { type: integer, default: 20, maximum: 100 } }
+      responses:
+        "200": { description: Liste de lots }
+    post:
+      summary: Créer un lot + générer le certificat
+      security: [{ cookieAuth: [] }]
+      parameters:
+        - { name: cooperativeId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [producteur_id, poids_kg, humidite_pct, prix_kg_fcfa, date_pesee]
+              properties:
+                producteur_id: { type: string }
+                poids_kg:      { type: number, exclusiveMinimum: 0 }
+                humidite_pct:  { type: number, minimum: 0, maximum: 100 }
+                prix_kg_fcfa:  { type: number, exclusiveMinimum: 0 }
+                date_pesee:    { type: string, format: date }
+      responses:
+        "201": { description: Lot créé avec certificat }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "422": { $ref: "#/components/responses/ValidationError" }
+
+  /certificats/{uuid}/verify:
+    get:
+      summary: Vérification publique d'un certificat
+      parameters:
+        - { name: uuid, in: path, required: true, schema: { type: string } }
+      responses:
+        "200":
+          description: Résultat de vérification
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VerifyResponse" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /certificats/public-key:
+    get:
+      summary: Clé publique ECDSA P-384 pour vérification indépendante
+      responses:
+        "200": { description: Clé publique PEM }
+
+  /certificats/{uuid}/pdf:
+    get:
+      summary: Télécharger le PDF du certificat
+      security: [{ cookieAuth: [] }]
+      parameters:
+        - { name: uuid, in: path, required: true, schema: { type: string } }
+      responses:
+        "200":
+          description: PDF du certificat
+          content:
+            application/pdf: {}
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: tracacajou_session
+
+  schemas:
+    AgentResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:               { type: string }
+            prenom:           { type: string }
+            nom:              { type: string }
+            cooperative_id:   { type: string }
+            cooperative_code: { type: string }
+
+    ProducteurList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:     { type: string }
+              code:   { type: string }
+              prenom: { type: string }
+              nom:    { type: string }
+              sexe:   { type: string }
+        meta:
+          type: object
+          properties:
+            page:  { type: integer }
+            limit: { type: integer }
+            total: { type: integer }
+
+    VerifyResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            authentique:  { type: boolean }
+            cooperative:  { type: string }
+            commune:      { type: string }
+            poids_kg:     { type: number }
+            humidite_pct: { type: number }
+            date_pesee:   { type: string }
+            statut:       { type: string, enum: [certifie, revoque] }
+
+  responses:
+    Unauthorized:
+      description: Non authentifié
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: object, properties: { code: { type: string }, message: { type: string }, status: { type: integer } } }
+    Forbidden:
+      description: Accès refusé
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: object }
+    ValidationError:
+      description: Erreur de validation (422)
+      content:
+        application/json:
+          schema:
+            type: object
+    NotFound:
+      description: Ressource introuvable

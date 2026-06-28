@@ -29,12 +29,12 @@ class CertificatController extends Controller
                 'authentique'  => $authentique,
                 'cooperative'  => $lot->cooperative->nom,
                 'commune'      => $lot->cooperative->commune,
-                'poids_kg'     => $lot->poids_kg,
-                'humidite_pct' => $lot->humidite_pct,
+                'poids_kg'     => (float) $lot->poids_kg,
+                'humidite_pct' => (float) $lot->humidite_pct,
                 'date_pesee'   => $lot->date_pesee->format('Y-m-d'),
                 'statut'       => $certificat->statut->value,
             ],
-        ]);
+        ], 200, [], JSON_PRESERVE_ZERO_FRACTION);
     }
 
     public function publicKey(): JsonResponse
