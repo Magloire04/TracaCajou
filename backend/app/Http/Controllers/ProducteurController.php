@@ -61,4 +61,20 @@ class ProducteurController extends Controller
             ],
         ], 201);
     }
+
+    public function destroy(Request $request, string $cooperativeId, string $producteurId): JsonResponse
+    {
+        $producteur = Producteur::where('id', $producteurId)
+            ->where('cooperative_id', $cooperativeId)
+            ->firstOrFail();
+
+        $producteur->update([
+            'prenom'   => '[supprimé]',
+            'nom'      => '[supprimé]',
+            'sexe'     => null,
+            'localite' => null,
+        ]);
+
+        return response()->json(null, 204);
+    }
 }
