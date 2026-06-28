@@ -35,7 +35,7 @@ class CertificatService
      */
     public function generateForLot(Lot $lot): Certificat
     {
-        $emisLe     = now();
+        $emisLe     = now()->startOfSecond();
         $publicUuid = Str::ulid()->toString();
 
         $payload   = $this->signatureService->buildPayload($lot, $emisLe->toIso8601String());
@@ -108,7 +108,6 @@ class CertificatService
         ob_start();
         imagepng($image);
         $pngData = ob_get_clean();
-        imagedestroy($image);
 
         return $pngData;
     }
