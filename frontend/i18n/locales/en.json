@@ -1,7 +1,25 @@
 {
   "app": { "name": "TraçaCajou" },
   "auth": { "login": "Login", "logout": "Logout", "email": "Email", "password": "Password", "submit": "Sign in" },
-  "lots": { "title": "Lots", "new": "New lot", "sync": "Synchronize", "pending": "lot(s) pending", "synced": "All synced" },
+  "lots": {
+    "title": "Lots",
+    "new": "New lot",
+    "sync": "Synchronize",
+    "pending": "lot(s) pending",
+    "synced": "All synced",
+    "producteur": "Producer",
+    "poids": "Weight (kg)",
+    "humidite": "Humidity (%)",
+    "prix": "Price (FCFA/kg)",
+    "date_pesee": "Weighing date",
+    "montant_estime": "Estimated amount",
+    "save_online": "Register and certify",
+    "save_offline": "Save offline",
+    "created_online": "Lot created and certificate generated.",
+    "saved_offline": "Lot saved offline.",
+    "verify": "Verify certificate",
+    "empty": "No lots recorded."
+  },
   "producteurs": {
     "title": "Producers",
     "new": "Enroll",
@@ -16,5 +34,5 @@
   },
   "common": { "back": "Back" },
   "offline": { "banner": "Offline mode — lots will sync when reconnected." },
-  "errors": { "required": "Required field", "network": "Network error" }
+  "errors": { "required": "Required field", "network": "Network error", "positive": "Value must be > 0", "humidity": "Value between 0 and 100" }
 }

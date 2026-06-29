@@ -1,7 +1,25 @@
 {
   "app": { "name": "TraçaCajou" },
   "auth": { "login": "Connexion", "logout": "Déconnexion", "email": "Email", "password": "Mot de passe", "submit": "Se connecter" },
-  "lots": { "title": "Lots", "new": "Nouveau lot", "sync": "Synchroniser", "pending": "lot(s) en attente", "synced": "Tout synchronisé" },
+  "lots": {
+    "title": "Lots",
+    "new": "Nouveau lot",
+    "sync": "Synchroniser",
+    "pending": "lot(s) en attente",
+    "synced": "Tout synchronisé",
+    "producteur": "Producteur",
+    "poids": "Poids (kg)",
+    "humidite": "Humidité (%)",
+    "prix": "Prix (FCFA/kg)",
+    "date_pesee": "Date de pesée",
+    "montant_estime": "Montant estimé",
+    "save_online": "Enregistrer et certifier",
+    "save_offline": "Sauvegarder hors-ligne",
+    "created_online": "Lot créé et certificat généré.",
+    "saved_offline": "Lot sauvegardé hors-ligne.",
+    "verify": "Vérifier le certificat",
+    "empty": "Aucun lot enregistré."
+  },
   "producteurs": {
     "title": "Producteurs",
     "new": "Enrôler",
@@ -16,5 +34,5 @@
   },
   "common": { "back": "Retour" },
   "offline": { "banner": "Mode hors-ligne — les lots seront synchronisés à la reconnexion." },
-  "errors": { "required": "Champ obligatoire", "network": "Erreur réseau" }
+  "errors": { "required": "Champ obligatoire", "network": "Erreur réseau", "positive": "Valeur doit être > 0", "humidity": "Valeur entre 0 et 100" }
 }
