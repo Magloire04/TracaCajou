@@ -4,7 +4,7 @@
   "lots": {
     "title": "Lots",
     "new": "New lot",
-    "sync": "Synchronize",
+    "sync": "Synchronize now",
     "pending": "lot(s) pending",
     "synced": "All synced",
     "producteur": "Producer",
@@ -22,7 +22,7 @@
   },
   "producteurs": {
     "title": "Producers",
-    "new": "Enroll",
+    "new": "Enroll a producer",
     "prenom": "First name",
     "nom": "Last name",
     "sexe": "Sex",
@@ -32,15 +32,15 @@
     "enrolled": "Producer enrolled successfully.",
     "empty": "No producers enrolled."
   },
-  "common": { "back": "Back" },
+  "common": { "back": "Back", "save": "Save", "loading": "Loading..." },
   "offline": { "banner": "Offline mode — lots will sync when reconnected." },
-  "errors": { "required": "Required field", "network": "Network error", "positive": "Value must be > 0", "humidity": "Value between 0 and 100" },
+  "errors": { "required": "Required field", "network": "Network error. Please try again.", "positive": "Value must be > 0", "humidity": "Value between 0 and 100" },
   "verify": {
     "subtitle": "Cashew origin certificate verification",
     "authentic": "Authentic certificate",
     "authentic_desc": "This lot was certified by the cooperative.",
     "revoked": "Revoked certificate",
-    "revoked_desc": "This certificate has been cancelled. A new certificate may have been issued.",
+    "revoked_desc": "This certificate has been cancelled.",
     "not_authentic": "Invalid certificate",
     "not_found": "No certificate found for this identifier.",
     "cooperative": "Cooperative",

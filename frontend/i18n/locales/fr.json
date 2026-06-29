@@ -4,7 +4,7 @@
   "lots": {
     "title": "Lots",
     "new": "Nouveau lot",
-    "sync": "Synchroniser",
+    "sync": "Synchroniser maintenant",
     "pending": "lot(s) en attente",
     "synced": "Tout synchronisé",
     "producteur": "Producteur",
@@ -22,7 +22,7 @@
   },
   "producteurs": {
     "title": "Producteurs",
-    "new": "Enrôler",
+    "new": "Enrôler un producteur",
     "prenom": "Prénom",
     "nom": "Nom",
     "sexe": "Sexe",
@@ -32,15 +32,15 @@
     "enrolled": "Producteur enrôlé avec succès.",
     "empty": "Aucun producteur enrôlé."
   },
-  "common": { "back": "Retour" },
+  "common": { "back": "Retour", "save": "Enregistrer", "loading": "Chargement..." },
   "offline": { "banner": "Mode hors-ligne — les lots seront synchronisés à la reconnexion." },
-  "errors": { "required": "Champ obligatoire", "network": "Erreur réseau", "positive": "Valeur doit être > 0", "humidity": "Valeur entre 0 et 100" },
+  "errors": { "required": "Champ obligatoire", "network": "Erreur réseau. Veuillez réessayer.", "positive": "Valeur doit être > 0", "humidity": "Valeur entre 0 et 100" },
   "verify": {
     "subtitle": "Vérification de certificat d'origine cajou",
     "authentic": "Certificat authentique",
     "authentic_desc": "Ce lot a été certifié par la coopérative.",
     "revoked": "Certificat révoqué",
-    "revoked_desc": "Ce certificat a été annulé. Un nouveau certificat peut avoir été émis.",
+    "revoked_desc": "Ce certificat a été annulé.",
     "not_authentic": "Certificat invalide",
     "not_found": "Aucun certificat trouvé pour cet identifiant.",
     "cooperative": "Coopérative",
