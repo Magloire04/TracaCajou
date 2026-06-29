@@ -34,5 +34,20 @@
   },
   "common": { "back": "Retour" },
   "offline": { "banner": "Mode hors-ligne — les lots seront synchronisés à la reconnexion." },
-  "errors": { "required": "Champ obligatoire", "network": "Erreur réseau", "positive": "Valeur doit être > 0", "humidity": "Valeur entre 0 et 100" }
+  "errors": { "required": "Champ obligatoire", "network": "Erreur réseau", "positive": "Valeur doit être > 0", "humidity": "Valeur entre 0 et 100" },
+  "verify": {
+    "subtitle": "Vérification de certificat d'origine cajou",
+    "authentic": "Certificat authentique",
+    "authentic_desc": "Ce lot a été certifié par la coopérative.",
+    "revoked": "Certificat révoqué",
+    "revoked_desc": "Ce certificat a été annulé. Un nouveau certificat peut avoir été émis.",
+    "not_authentic": "Certificat invalide",
+    "not_found": "Aucun certificat trouvé pour cet identifiant.",
+    "cooperative": "Coopérative",
+    "commune": "Commune",
+    "poids": "Poids",
+    "humidite": "Humidité",
+    "date_pesee": "Date de pesée",
+    "powered_by": "TraçaCajou"
+  }
 }

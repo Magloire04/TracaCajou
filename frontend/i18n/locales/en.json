@@ -34,5 +34,20 @@
   },
   "common": { "back": "Back" },
   "offline": { "banner": "Offline mode — lots will sync when reconnected." },
-  "errors": { "required": "Required field", "network": "Network error", "positive": "Value must be > 0", "humidity": "Value between 0 and 100" }
+  "errors": { "required": "Required field", "network": "Network error", "positive": "Value must be > 0", "humidity": "Value between 0 and 100" },
+  "verify": {
+    "subtitle": "Cashew origin certificate verification",
+    "authentic": "Authentic certificate",
+    "authentic_desc": "This lot was certified by the cooperative.",
+    "revoked": "Revoked certificate",
+    "revoked_desc": "This certificate has been cancelled. A new certificate may have been issued.",
+    "not_authentic": "Invalid certificate",
+    "not_found": "No certificate found for this identifier.",
+    "cooperative": "Cooperative",
+    "commune": "Commune",
+    "poids": "Weight",
+    "humidite": "Humidity",
+    "date_pesee": "Weighing date",
+    "powered_by": "TraçaCajou"
+  }
 }
