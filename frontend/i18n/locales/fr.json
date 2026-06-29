@@ -1,0 +1,53 @@
+{
+  "app": { "name": "TraçaCajou" },
+  "auth": { "login": "Connexion", "logout": "Déconnexion", "email": "Email", "password": "Mot de passe", "submit": "Se connecter" },
+  "lots": {
+    "title": "Lots",
+    "new": "Nouveau lot",
+    "sync": "Synchroniser maintenant",
+    "pending": "lot(s) en attente",
+    "synced": "Tout synchronisé",
+    "producteur": "Producteur",
+    "poids": "Poids (kg)",
+    "humidite": "Humidité (%)",
+    "prix": "Prix (FCFA/kg)",
+    "date_pesee": "Date de pesée",
+    "montant_estime": "Montant estimé",
+    "save_online": "Enregistrer et certifier",
+    "save_offline": "Sauvegarder hors-ligne",
+    "created_online": "Lot créé et certificat généré.",
+    "saved_offline": "Lot sauvegardé hors-ligne.",
+    "verify": "Vérifier le certificat",
+    "empty": "Aucun lot enregistré."
+  },
+  "producteurs": {
+    "title": "Producteurs",
+    "new": "Enrôler un producteur",
+    "prenom": "Prénom",
+    "nom": "Nom",
+    "sexe": "Sexe",
+    "localite": "Localité",
+    "consentement": "Le producteur consent à l'enregistrement de ses données (APDP)",
+    "consentement_required": "Le consentement est obligatoire",
+    "enrolled": "Producteur enrôlé avec succès.",
+    "empty": "Aucun producteur enrôlé."
+  },
+  "common": { "back": "Retour", "save": "Enregistrer", "loading": "Chargement..." },
+  "offline": { "banner": "Mode hors-ligne — les lots seront synchronisés à la reconnexion." },
+  "errors": { "required": "Champ obligatoire", "network": "Erreur réseau. Veuillez réessayer.", "positive": "Valeur doit être > 0", "humidity": "Valeur entre 0 et 100" },
+  "verify": {
+    "subtitle": "Vérification de certificat d'origine cajou",
+    "authentic": "Certificat authentique",
+    "authentic_desc": "Ce lot a été certifié par la coopérative.",
+    "revoked": "Certificat révoqué",
+    "revoked_desc": "Ce certificat a été annulé.",
+    "not_authentic": "Certificat invalide",
+    "not_found": "Aucun certificat trouvé pour cet identifiant.",
+    "cooperative": "Coopérative",
+    "commune": "Commune",
+    "poids": "Poids",
+    "humidite": "Humidité",
+    "date_pesee": "Date de pesée",
+    "powered_by": "TraçaCajou"
+  }
+}

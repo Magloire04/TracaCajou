@@ -1,0 +1,53 @@
+{
+  "app": { "name": "TraçaCajou" },
+  "auth": { "login": "Login", "logout": "Logout", "email": "Email", "password": "Password", "submit": "Sign in" },
+  "lots": {
+    "title": "Lots",
+    "new": "New lot",
+    "sync": "Synchronize now",
+    "pending": "lot(s) pending",
+    "synced": "All synced",
+    "producteur": "Producer",
+    "poids": "Weight (kg)",
+    "humidite": "Humidity (%)",
+    "prix": "Price (FCFA/kg)",
+    "date_pesee": "Weighing date",
+    "montant_estime": "Estimated amount",
+    "save_online": "Register and certify",
+    "save_offline": "Save offline",
+    "created_online": "Lot created and certificate generated.",
+    "saved_offline": "Lot saved offline.",
+    "verify": "Verify certificate",
+    "empty": "No lots recorded."
+  },
+  "producteurs": {
+    "title": "Producers",
+    "new": "Enroll a producer",
+    "prenom": "First name",
+    "nom": "Last name",
+    "sexe": "Sex",
+    "localite": "Locality",
+    "consentement": "The producer consents to data registration (APDP)",
+    "consentement_required": "Consent is required",
+    "enrolled": "Producer enrolled successfully.",
+    "empty": "No producers enrolled."
+  },
+  "common": { "back": "Back", "save": "Save", "loading": "Loading..." },
+  "offline": { "banner": "Offline mode — lots will sync when reconnected." },
+  "errors": { "required": "Required field", "network": "Network error. Please try again.", "positive": "Value must be > 0", "humidity": "Value between 0 and 100" },
+  "verify": {
+    "subtitle": "Cashew origin certificate verification",
+    "authentic": "Authentic certificate",
+    "authentic_desc": "This lot was certified by the cooperative.",
+    "revoked": "Revoked certificate",
+    "revoked_desc": "This certificate has been cancelled.",
+    "not_authentic": "Invalid certificate",
+    "not_found": "No certificate found for this identifier.",
+    "cooperative": "Cooperative",
+    "commune": "Commune",
+    "poids": "Weight",
+    "humidite": "Humidity",
+    "date_pesee": "Weighing date",
+    "powered_by": "TraçaCajou"
+  }
+}
