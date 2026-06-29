@@ -1,8 +1,0 @@
-{
-  "app": { "name": "TraçaCajou" },
-  "auth": { "login": "Connexion", "logout": "Déconnexion", "email": "Email", "password": "Mot de passe", "submit": "Se connecter" },
-  "lots": { "title": "Lots", "new": "Nouveau lot", "sync": "Synchroniser" },
-  "producteurs": { "title": "Producteurs", "new": "Enrôler" },
-  "offline": { "banner": "Mode hors-ligne — les lots seront synchronisés à la reconnexion." },
-  "errors": { "required": "Champ obligatoire", "network": "Erreur réseau" }
-}

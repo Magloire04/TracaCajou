@@ -39,7 +39,6 @@ export default defineNuxtConfig({
       { code: 'en', name: 'English',  file: 'en.json' },
     ],
     defaultLocale: 'fr',
-    lazy: true,
     langDir: 'locales/',
     strategy: 'no_prefix',
   },
@@ -74,7 +73,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: process.env.VITE_API_BASE_URL ?? 'http://localhost:8000',
+      apiBase: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000',
     },
   },
 })
