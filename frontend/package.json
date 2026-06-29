@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@nuxt/test-utils": "^4.0.3",
+    "@pinia/testing": "^1.0.3",
     "@playwright/test": "^1.61.1",
     "@vue/test-utils": "^2.4.11",
     "jsdom": "^29.1.1",
