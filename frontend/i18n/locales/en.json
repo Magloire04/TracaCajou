@@ -1,0 +1,8 @@
+{
+  "app": { "name": "TraçaCajou" },
+  "auth": { "login": "Login", "logout": "Logout", "email": "Email", "password": "Password", "submit": "Sign in" },
+  "lots": { "title": "Lots", "new": "New lot", "sync": "Synchronize" },
+  "producteurs": { "title": "Producers", "new": "Enroll" },
+  "offline": { "banner": "Offline mode — lots will sync when reconnected." },
+  "errors": { "required": "Required field", "network": "Network error" }
+}
