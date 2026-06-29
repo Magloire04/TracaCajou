@@ -2,7 +2,19 @@
   "app": { "name": "TraçaCajou" },
   "auth": { "login": "Connexion", "logout": "Déconnexion", "email": "Email", "password": "Mot de passe", "submit": "Se connecter" },
   "lots": { "title": "Lots", "new": "Nouveau lot", "sync": "Synchroniser", "pending": "lot(s) en attente", "synced": "Tout synchronisé" },
-  "producteurs": { "title": "Producteurs", "new": "Enrôler" },
+  "producteurs": {
+    "title": "Producteurs",
+    "new": "Enrôler",
+    "prenom": "Prénom",
+    "nom": "Nom",
+    "sexe": "Sexe",
+    "localite": "Localité",
+    "consentement": "Le producteur consent à l'enregistrement de ses données (APDP)",
+    "consentement_required": "Le consentement est obligatoire",
+    "enrolled": "Producteur enrôlé avec succès.",
+    "empty": "Aucun producteur enrôlé."
+  },
+  "common": { "back": "Retour" },
   "offline": { "banner": "Mode hors-ligne — les lots seront synchronisés à la reconnexion." },
   "errors": { "required": "Champ obligatoire", "network": "Erreur réseau" }
 }

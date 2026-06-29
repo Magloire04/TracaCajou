@@ -2,7 +2,19 @@
   "app": { "name": "TraçaCajou" },
   "auth": { "login": "Login", "logout": "Logout", "email": "Email", "password": "Password", "submit": "Sign in" },
   "lots": { "title": "Lots", "new": "New lot", "sync": "Synchronize", "pending": "lot(s) pending", "synced": "All synced" },
-  "producteurs": { "title": "Producers", "new": "Enroll" },
+  "producteurs": {
+    "title": "Producers",
+    "new": "Enroll",
+    "prenom": "First name",
+    "nom": "Last name",
+    "sexe": "Sex",
+    "localite": "Locality",
+    "consentement": "The producer consents to data registration (APDP)",
+    "consentement_required": "Consent is required",
+    "enrolled": "Producer enrolled successfully.",
+    "empty": "No producers enrolled."
+  },
+  "common": { "back": "Back" },
   "offline": { "banner": "Offline mode — lots will sync when reconnected." },
   "errors": { "required": "Required field", "network": "Network error" }
 }
