@@ -27,7 +27,8 @@ export class SyncQueue {
       if (lot.tentatives >= MAX_TENTATIVES) continue
       await database.lotsEnAttente.update(lot.id, { statut: 'en_cours' })
       try {
-        await this.pushToApi(lot)
+        const { id: _id, statut: _statut, tentatives: _tentatives, cree_le: _cree_le, ...payload } = lot
+        await this.pushToApi(payload as Parameters<typeof this.pushToApi>[0])
         await database.lotsEnAttente.delete(lot.id)
       } catch {
         const tentatives = lot.tentatives + 1
