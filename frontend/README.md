@@ -1,75 +1,41 @@
-# Nuxt Minimal Starter
+# TraçaCajou — Front-end Nuxt 4 PWA
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+PWA mobile-first pour les agents de coopérative : saisie offline de lots cajou, synchronisation différée, et vérification publique de certificats ECDSA P-384.
 
-## Setup
+## Stack
 
-Make sure to install dependencies:
+- Nuxt 4 · Vue 3 · Vuetify 3 · Pinia (persistedstate) · Dexie.js · @nuxtjs/i18n (FR + EN) · @vite-pwa/nuxt
+
+## Installation
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+cp .env.example .env.local
+# Éditer .env.local : VITE_API_BASE_URL=http://localhost:8000
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Variables d'environnement
 
-Build the application for production:
+| Variable | Description | Défaut |
+|---|---|---|
+| `VITE_API_BASE_URL` | URL du back-end Laravel | `http://localhost:8000` |
+
+## Tests
 
 ```bash
-# npm
-npm run build
+# Unitaires (Vitest)
+npx vitest run
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+# E2E Playwright (requiert back-end sur :8000 et front sur :3000)
+npx playwright test
 ```
 
-Locally preview production build:
+## Architecture
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- `app/pages/` — Routes (login, producteurs, lots, certificats)
+- `app/components/` — Composants UI (layout, lots, producteurs, certificats)
+- `app/composables/` — Logique réutilisable (useApi, useAuth, useOfflineSync)
+- `app/stores/` — État global Pinia (auth, sync)
+- `app/services/` — Services métier (SyncQueue, Dexie database)
+- `i18n/locales/` — Traductions FR et EN
